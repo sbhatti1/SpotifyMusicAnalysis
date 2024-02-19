@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+
+<head>
+	<title>CS-515: Project 3</title>
+	<style>
+		body {
+			font-family: 'Avenir', sans-serif;
+			background-color: #f0f8ff;
+			/* AliceBlue */
+			color: #333;
+			margin: 0;
+			padding: 0;
+			text-align: center;
+		}
+
+		h1,
+		h2,
+		h3 {
+			color: #2e7d32;
+			/* Mantis Green */
+		}
+
+		p {
+			color: #333;
+		}
+
+		form {
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 8px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			max-width: 400px;
+			margin: auto;
+			margin-top: 20px;
+		}
+
+		label {
+			display: block;
+			margin-bottom: 8px;
+			font-weight: bold;
+			color: #333;
+		}
+
+		select,
+		input {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 16px;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			box-sizing: border-box;
+		}
+
+		button {
+			background-color: #4caf50;
+			/* Green */
+			color: white;
+			padding: 12px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			width: 100%;
+			font-weight: bold;
+			font-style: oblique;
+		}
+
+		button:hover {
+			background-color: #45a049;
+		}
+
+		a {
+			text-decoration: none;
+			color: #333;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+		.guidance {
+			font-weight: bold;
+			font-size: 25px;
+			color: #333;
+		}
+
+		body {
+			margin: 0;
+			font-family: Arial, Helvetica, sans-serif;
+		  }
+		  
+		  .topnav {
+			overflow: hidden;
+			background-color: #333;
+		  }
+		  
+		  .topnav a {
+			float: left;
+			color: #f2f2f2;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+			font-size: 17px;
+		  }
+		  
+		  .topnav a:hover {
+			background-color: #ddd;
+			color: black;
+		  }
+		  
+		  .topnav a.active {
+			background-color: #04AA6D;
+			color: white;
+		  }
+		  
+		  #about{
+			  float:right;
+		  }
+	</style>
+</head>
+<center>
+	<div class="topnav">
+		<!-- <a id="about">
+			<button type="submit" form="otherplot">About</button>
+		</a> -->
+		<a href="/otherplot" id="about"> Other Plots </a>
+		
+		
+	  </div>
+	<font color="black" size="4">
+		<h1>CS-415/515:Data Science Pipeline </h1>
+		<h2>Analysis of Popularity of Artists on Spotify</h2>
+		<p>Project Overview</p>
+
+		<body>
+			<!-- <div class="navbar"> -->
+
+				
+				<form action="/result" autocomplete="on" method="POST" enctype="multipart/form-data">
+					<h3>Top 10 Artists</h3><br><br>
+					<label for="year">Year:</label>
+					<input type="number" id="year" name="year" required>
+					<br><br>
+					<button type="submit">Top 10 Artists on Spotify and Reddit Mentions</button>
+
+				</form>
+			
+			<form action="/sentimentAnalysis" autocomplete="on" method="POST" enctype="multipart/form-data">
+				<h3>Sentiment Analysis and Correlation with Song/Artist</h3>
+				<label for="trackOrArtist">Select Track or Artist:</label>
+				<select name="trackOrArtist" id="trackOrArtist" onchange="populateTracksOrArtists()">
+					<option value="select">Select</option>
+					<option value="track">Track</option>
+					<option value="artist">Artist</option>
+				</select>
+				<br><br>
+				<label for="popularTracksOrArtists">Select Popular Track or Artist:</label>
+				<select name="popularTracksOrArtists" id="popularTracksOrArtists">
+					<!-- Options will be dynamically populated based on user's selection -->
+				</select>
+				<br><br>
+				<button type="submit">Perform Sentiment Analysis</button>
+			</form>
+			<script>
+				function populateTracksOrArtists() {
+					// Get the selected value from the first selection
+					var selection = document.getElementById("trackOrArtist").value;
+		
+					// Get the second selection element
+					var popularTracksOrArtistsSelect = document.getElementById("popularTracksOrArtists");
+		
+					// Clear existing options
+					popularTracksOrArtistsSelect.innerHTML = '';
+		
+					// Add options based on the selection
+					if (selection === "track") {
+						// Add track options (replace with actual track data)
+						addOption(popularTracksOrArtistsSelect, "Blank Space", "Blank Space");
+						addOption(popularTracksOrArtistsSelect, "August", "August");
+						addOption(popularTracksOrArtistsSelect, "Runaway", "Runaway");
+						addOption(popularTracksOrArtistsSelect, "Yellow", "Yellow");
+						addOption(popularTracksOrArtistsSelect, "Toxic", "Toxic");
+						addOption(popularTracksOrArtistsSelect, "The Scientist", "The Scientist");
+						addOption(popularTracksOrArtistsSelect, "Paradise", "Paradise");
+						addOption(popularTracksOrArtistsSelect, "IDGAF", "IDGAF");
+						// Add more tracks as needed
+					} else if (selection === "artist") {
+						// Add artist options (replace with actual artist data)
+						addOption(popularTracksOrArtistsSelect, "Sting", "Sting");
+						addOption(popularTracksOrArtistsSelect, "Eminem", "Eminem");
+						addOption(popularTracksOrArtistsSelect, "Taylor Swift", "Taylor Swift");
+						addOption(popularTracksOrArtistsSelect, "Drake", "Drake");
+						addOption(popularTracksOrArtistsSelect, "Mora", "Mora");
+						addOption(popularTracksOrArtistsSelect, "Foo Fighters", "Foo Fighters");
+						addOption(popularTracksOrArtistsSelect, "Cher", "Cher");
+						addOption(popularTracksOrArtistsSelect, "Radiohead", "Radiohead");
+						addOption(popularTracksOrArtistsSelect, "Green Day", "Green Day");
+						addOption(popularTracksOrArtistsSelect, "Michael Jackson", "Michael Jackson");
+						addOption(popularTracksOrArtistsSelect, "Nirvana", "Nirvana");
+						addOption(popularTracksOrArtistsSelect, "Sade", "Sade");
+						addOption(popularTracksOrArtistsSelect, "Madonna", "Madonna");
+						addOption(popularTracksOrArtistsSelect, "Elton John", "Elton John");
+						addOption(popularTracksOrArtistsSelect, "Lana Del Rey", "Lana Del Rey");
+						// Add more artists as needed
+					}
+
+					function addOption(selectElement, value, text) {
+						var option = document.createElement("option");
+						option.value = value;
+						option.text = text;
+						selectElement.add(option);
+					}
+				}
+				</script>
+				<form action="/researchanalysis" id="researchanalysis" autocomplete="on" method="POST" enctype="multipart/form-data">
+					<br><br>
+					<h3>Correlation of track popularity with song features</h3>
+					<br><br>
+					<button type="submit">Research Analysis</button>
+				</form>
+				<DIV align="left">
+					<p><b>Guidance: </b></p>
+					<p><b>Prof. Jeremy Blackburn</b></p>
+				</DIV>
+		</body>
+		</div>
+
+	</font>
+</center>
+
+</html>

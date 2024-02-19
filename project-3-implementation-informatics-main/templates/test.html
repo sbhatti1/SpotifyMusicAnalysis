@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <h1>Other Plots </h1>
+  </div>
+
+
+  <div id="chartContainer4" style="width: 45%; height: 300px;display: inline-block;">
+    {% if hate_speech %}
+    <img src="data:image/png;base64, {{ hate_speech }}" style="width:100%">
+    {% else %}
+    <center>
+      <p>No data available.</p>
+    </center>
+    {% endif %}
+  </div>
+
+
+
+</body>
+
+</html>

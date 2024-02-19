@@ -1,0 +1,7 @@
+Flask==3.0.0
+matplotlib==3.8.2
+nltk==3.8.1
+pandas==2.1.4
+psycopg2_binary==2.9.9
+Requests==2.31.0
+seaborn==0.13.0
